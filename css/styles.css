@@ -1,0 +1,65 @@
+* { 
+    box-sizing: border-box;    /*makes sizing widths and heights easier*/
+}
+
+body {
+    margin: 0;
+    background-color: blanchedalmond;
+    overflow: hidden; /*for when ball goes out of screen*/ 
+} 
+
+.bar {
+    position: absolute;
+    background-color: rgb(133, 85, 14);
+    width: 1.5vh;       /*USE OF VH AND VW - useful as it adjusts sizes of bars to size of window*/
+    height: 15vh;
+
+    --position: 40;    /* '--' custom properties which can be called using var() and also edited in javascript*/
+    top: calc(var(--position) * 1vh); /* so this is the same as writing 40vh, just that it can be changed*/
+
+
+}
+
+#player-bar{
+    left: 1vw;
+}
+
+#computer-bar{
+    right: 1vw;
+}
+
+#ball{
+    position: absolute;
+    background-color: rgb(133, 85, 14);
+    width: 3vh;       
+    height: 3vh;
+
+    --x: 50;
+    --y: 50;    
+    left: calc(var(--x) * 1vw);
+    top: calc(var(--y) * 1vh);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    font-size: 5vh;
+    font-weight: bold;
+    color: rgb(133, 85, 14)
+}
+
+.scoreboard > * {     /* '> *' is selector of all children of scoreboard*/
+    padding: 0 10px 0 10px;
+    margin: 1vh;
+    opacity: 0.75;
+
+}
+
+#player-points {
+    text-align: left;
+}
+
+#computer-points {
+    text-align: right;
+}
+
