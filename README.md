@@ -1,4 +1,4 @@
-## Project 1 - Pong
+# Project 1 - Pong
 
 # Game Description
 Pong is a classic game where the player moves their bar on the right side of the screen vertically to try and hit an object past the opponent. The computer, in this
