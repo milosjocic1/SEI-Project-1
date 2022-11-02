@@ -1,11 +1,11 @@
 * {
-  box-sizing: border-box; /*makes sizing widths and heights easier*/
+  box-sizing: border-box; 
 }
 
 body {
   margin: 0;
   background-color: blanchedalmond;
-  overflow: hidden; /*for when ball goes out of screen*/
+  overflow: hidden; 
 }
 
 .instructions {
@@ -21,13 +21,13 @@ body {
 .bar {
   position: absolute;
   background-color: rgb(133, 85, 14);
-  width: 1.5vh; /*USE OF VH AND VW - useful as it adjusts sizes of bars to size of window*/
+  width: 1.5vh; 
   height: 15vh;
 
-  --position: 40; /* '--' custom properties which can be called using var() and also edited in javascript*/
+  --position: 40; 
   top: calc(
     var(--position) * 1vh
-  ); /* so this is the same as writing 40vh, just that it can be changed*/
+  ); 
 }
 
 #player-bar {
@@ -61,7 +61,6 @@ body {
 }
 
 .scoreboard > * {
-  /* '> *' is selector of all children of scoreboard*/
   padding: 0 10px 0 10px;
   margin: 1vh;
   opacity: 0.75;

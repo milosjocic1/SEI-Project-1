@@ -17,29 +17,12 @@ function updateTime(time) {
 
     if (pointComputer()) pointReload();
   }
-
   timePrevious = time;
   window.requestAnimationFrame(updateTime);
-  // the above are created to make the game run smoothly- as long as something can be changed on the screen, the update loop will run for the time
-} // logging the updated time to the console gives an infinite loop of times which all have a similar difference between them. this can be identified as deltaTime
+} // the above are created to make the game run smoothly- as long as something can be changed on the screen, the update loop will run for the time
+// logging the updated time to the console gives an infinite loop of times which all have a similar difference between them. this can be identified as deltaTime
 // delta slightly fluctuates, so using it ensures that all movements of elements are based on the same timings
 const countdown = document.getElementById("timer");
-
-var timeLeft = 59;
-var timer = setInterval(function(){
-  if(timeLeft === 0){
-    clearInterval(timer);
-    countdown.innerHTML = "Game Over";
-    // checkWinner;
-  } else {
-    countdown.innerHTML = timeLeft;
-  }
-  timeLeft -= 1;
-}, 1000);
-
-
-
-
 
 function pointComputer() {
   const bounds = ball.bounds();
