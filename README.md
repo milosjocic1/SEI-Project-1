@@ -1,99 +1,88 @@
 # Project 1 - Pong
 
-# Game Description
-Pong is a classic game where the player moves their bar on the right side of the screen vertically to try and hit an object past the opponent. The computer, in this
-case (typically there is an option for a second player), moves its own bar on the left side of the screen and has the same objective. Each time the object in 
-play goes past a player and hits the side of the window, a point is registered. First to 10 points wins!
+![](https://i.imgur.com/sKDEY3g.png)
 
-# User Stories
-As a new player, I want to learn how to play the game and the objective of the game so that I can play it.
+## Project Overview
 
-As a player, I want to initiate the start of the game so that I can start playing.
+Pong is a classic game where the player moves their bar on the left side of the screen vertically to try and hit an object past the opponent. In my version, the computer moves its own bar on the right side of the screen and tries to gain points. Each time the object in 
+play goes past a player and hits the side of the window, a point is registered. 
 
-As a player, I want to use my keyboard to control my game character so that I can gain points.
+This was my first project for General Assembly's Software Engineering Course: creating a game using HTML5, CSS3 and JavaScript (ES6) in the timeframe of a week. 
 
-As a player, I want to see a scoreboard so that I can keep track of the points scored.
+Play Pong here:
 
-As a player, upon finishing the game I want to see the final score so that I know who won.
+## Technologies Used 
+- HTML5 
+- CSS3
+- JavaScript (ES6)
+- Git / GitHub
+- Figma 
+- VS Code
 
-As a player, upon finishing the game I want to have the option to restart so that I can play again.
+## Development Process 
 
-## Wireframes 
-[Link to wireframes](https://www.figma.com/file/qfyaY6dJDAuzUeldleiEzZ/Pong-Wireframes)
+### Day 1 
+The first day consisted of planning the project and breaking it down into achievable tasks that could be approached sequentially. I wrote out all of the key features and functionalities that I wanted my game to have in order to structure a timeframe around building it. The most challenging features seemed to be the movement of the ball and the collision between the ball and its surroundings. 
+I also created wireframes on Figma to help me visualise how I wanted my game to look. 
 
-Wireframes were created using Figma to help visualize the concept of the game and the multiple windows that it will contain. This also aided in the creation of 
-various elements in the html and which parts of the game they would resemble.
+[Link to wireframes.](https://www.figma.com/file/qfyaY6dJDAuzUeldleiEzZ/Pong-Wireframes)
 
-## Planning
-The planning process involved breaking down the game into its many parts and functionalities so that each section could be approached individually. Initially the game was broken down into the following:
+### Day 2-3
+I started with creating the elements of the game in HTML5 and styling them with CSS3. These included the player's bar, the computer's bar, the ball, the background, the scoreboard and the instructions. Once this was completed, I then started approaching the functionalities in the game that would be coded with JavaScript. The functionalities were the following:
+- Making the ball move randomly from the middle of the screen
+- Making the ball change direction upon collision with the top and bottom of the screen
+- Controlling the player bar with the up and down arrow keys.
+- Collision between the ball and the bars
+- Making the ball accelerate slowly
+- Registering a point depending on which side of the window the ball hits. 
 
-HTML elements: the ball, the player and computer bars, the scoreboard
+### Day 4-7
+These days were the most intense in regards to researching JavaScript methods and how they could be implemented. These were the most notable contributions I made during these days: 
+- JavaScript Classes
 
-Styling of the above HTML elements
+  Creating separate files main.js, ball.js and bar.js helped to compartmentalise the separate functionalities for the main elements of the game. This required the creation of classes which were exported from their respective file and imported in other files in order for them to be used globally. 
 
-Functionality with JavaScript: Making the ball move randomly from a set position, making the ball bounce off the top of the window (change y direction) and the bars (change x direction), making the ball slowly accelerate, setting a limit to the speed of the computer's bar to allow the player a chance to win, registering a point to the computer if the ball hits the left side of the window and a point to the player if the ball hits the right, moving the player bar. 
+- requestAnimationFrame method / Frame rate 
 
-## Methods used 
-JavaScript Classes:
+  As opposed to setInterval, I used the requestAnimationFrame method to create an update loop for the game to run.
 
-Creating classes helped to compartmentalise the JavaScript code for the different elements and separate them into different files to decongest the code and atttempt to make it cleaner.
+  I created a  constant called deltaTime (change in time between frames) to ensure that all the game element movements respond to the same frame rate, so that in the event of a drop in frame rate, everything is affected equally and the game still runs smoothly.
 
+- Randomised ball movement
+  
+  The initial direction of the ball upon resetting to the centre of the screen was decided by generating a random number between 0 and 2 Pi. I used the cosine value to determine the x direction and sine value for the y direction to create a directional unit vector of magnitude 1. Limits were set for the x and y values to ensure that the ball doesn't move only horizontally or only vertically.
 
-requestAnimationFrame():
+- Collision 
 
-As opposed to setInterval, requestAnimationFrame() method was used to run an update loop (which is infinite, and might not have been the better option as it caused problems for game over sequence). 
+  I used the getBoundingClientRect function to return DOMRect objects for the various elements which gives information on their size and their relative position in the viewport. This enabled me to change the direction of the ball when it hits the top and bottom of the viewport as well as the bars. Also it helped to register points when the ball hit the sides of the viewport. 
 
-A constant deltaTime (change in time between frames) was created to ensure that all the game element movements are based on the same frame rate, so that in the event of a drop in frame rate, everything is affected equally and the game still runs smoothly.
+- Player control of bar
 
+  In order to move the player bar, I used an event listener for "keydown". Key codes for arrow down and arrow up were passed into the function to move the bar 10% of the viewport height up or down.
 
-CSS methods: 
+- Computer control of bar
 
-CSS custom variables: (--position) allows for changes to be made easily in JavaScript.
+  During the update loop, I set the computer bar's y position to be equal to the y position of the ball. However, this meant that it will always get to the ball and the player would never be able to win. For this reason, a limit to the speed of the computer bar was set, so that as the ball accelerates, the computer will slowly lose the ability to keep up with the ball, allowing for the player to score points.
 
-Scaling: The relative units vh (viewport height) and vw (viewport width) were used a lot in order to make the game scale to the size of the window/viewport, as the units are registered as percentages of the window height and width. 
+## Errors or bugs
 
+Occasionaly, the ball will appear to slide on the bar before the collision occurs and it changes direciton.
 
-Making the ball move randomly from a set position:
+## Challenges
 
-The concept of unit vectors was applied to determine the initial direction of the ball. A random number between 0 and 2PI was generated for which the cosine value was found for the x direction and sine value found for the y direction in order to generate a directional unit vector of 1 in any given direction. This was all declared in a while loop that checked the limits of the x and y directions to ensure that the ball didn't move completely vertically or completely horizontally. 
+This was my first JavaScript project, so there were many areas where I lacked complete understanding in the implementation of researched methods that hadn't been covered in previous lectures. I could have been more efficient in my approach to understanding concepts before using them, as I had many errors that I was not able to decipher as a result, which led to many points of frustration during the project week.
 
+## Wins
 
-Making the ball bounce off the top of the window and off the bars
+Getting collision to work was a major obstacle and took me much longer than expected to finish. The biggest win for me was just getting the game to actually work. It really was a monumental challenge for me given that it was my first project, and I was over the moon to create something that anyone could play and enjoy.
 
-getBoundingClientRect(): This method was used to generate bounnds / rectangles around elements, which could be checked against the inner height of the window to then reverse the y direction of the ball.
+## Future improvements
 
-A collision function was declared to initiate the change in x direction when the ball hit the bars.
+Currently, the game is endless and can go on forever. A potential improvement would be to have an endpoint to decide a winner, whether it be a specific number of points or a time limit. Also, different options for game difficulty could be added, where the computer would be increasingly difficult to gain points against. 
 
+## Key learnings
 
-Making the ball slowly accelerate
-
-This was achieved by adding a tiny acceleration value to the speed per deltaTime.
-
-
-Moving the player bar 
-
-In order to move the player bar, and event listener for "keydown" was used. Key codes for arrow down and arrow up were passed into the function to move the bar 10% of the viewport height up or down.
-
-
-Moving the computer bar
-
-During the update loop, the computer bar's y position was set to be equal to the y position of the ball. However, this means that it will always get to the ball and the player will never be able to win. For this reason, a limit to the speed of the computer bar was set, so that as the ball accelerates, the computer will slowly lose the ability to keep up with the ball, allowing for the player to score points.
-
-
-Registering the points
-
-
-Checks were created for if the ball was at either side of the window so that points could be registered. To change the values on the scoreboard, DOM was used to change the HTML and increment the scores depending on which side of the window the ball hits. Then, the loop was reset and the ball returned to the middle.
-
-
-## Unsolved Problems
-
-I decided to tackle the gameplay first as this was the meat of the project, however I truly underestimated the scale and depth of the logic that was necessary to make the game work. This poor estimation resulted in my time management being severely affected and led to me not including two of the wireframes that I wanted to include (start screen and game over screen).
-
-As I mentioned earlier, I believe that the use of an infinite loop made it incredibly difficult for me to stop the game running, whereas if I used a set interval method I would have been able to use clear interval, however I understood this way too late in order to make these changes to my code. Every attempt I made at checking if either score reached 10 to end the game failed, so I opted for another idea which involved using a timer. The timer is simple DOM manipulation, which counts down from 59 seconds and then changes the HTML to game over, however I failed in actually stopping the game from running and scoring more points.
-
-These are things I would like to add next, and I think this would be achieved with a more realistic estimation of how long tasks would take and a more analytical approach in trying to understand every functionality and detail of the game. 
-
+This project taught me a lot about JavaScript and significantly improved my understanding of DOM. It also taught me to be more realistic in what can be achieved in a week and to pay more attention to the planning stage of a project, which ultimately should provide structure and a clear road map to achieving the goal of the project.
 
 
 
