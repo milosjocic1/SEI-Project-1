@@ -1,4 +1,4 @@
-# Project 1 - Pong
+# SEI Project 1 - Pong
 
 ![](https://i.imgur.com/sKDEY3g.png)
 
