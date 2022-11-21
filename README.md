@@ -7,9 +7,9 @@
 Pong is a classic game where the player moves their bar on the left side of the screen vertically to try and hit an object past the opponent. In my version, the computer moves its own bar on the right side of the screen and tries to gain points. Each time the object in 
 play goes past a player and hits the side of the window, a point is registered. 
 
-This was my first project for General Assembly's Software Engineering Course: creating a game using HTML5, CSS3 and JavaScript (ES6) in the timeframe of a week. 
+This was my first project for General Assembly's Software Engineering Course: a solo project to create a game using HTML5, CSS3 and JavaScript (ES6) in the timeframe of a week. 
 
-Play Pong here:
+[Play Pong here:](https://milosjocic1.github.io/SEI-Project-1/)
 
 ## Technologies Used 
 - HTML5 
@@ -18,6 +18,13 @@ Play Pong here:
 - Git / GitHub
 - Figma 
 - VS Code
+
+## Brief
+- Include separate HTML / CSS / JavaScript files
+- Use JavaScript and/or jQuery for DOM manipulation
+- Deploy the project online
+- Use semantic markup for HTML and CSS in order to adhere to best practices
+- Have well-formatted, and well-commented code
 
 ## Development Process 
 
@@ -48,13 +55,16 @@ These days were the most intense in regards to researching JavaScript methods an
 
   I created a  constant called deltaTime (change in time between frames) to ensure that all the game element movements respond to the same frame rate, so that in the event of a drop in frame rate, everything is affected equally and the game still runs smoothly.
 
+![](https://i.imgur.com/cbNtbGg.png)
 - Randomised ball movement
   
   The initial direction of the ball upon resetting to the centre of the screen was decided by generating a random number between 0 and 2 Pi. I used the cosine value to determine the x direction and sine value for the y direction to create a directional unit vector of magnitude 1. Limits were set for the x and y values to ensure that the ball doesn't move only horizontally or only vertically.
-
+![](https://i.imgur.com/d46Skkp.png)
 - Collision 
 
   I used the getBoundingClientRect function to return DOMRect objects for the various elements which gives information on their size and their relative position in the viewport. This enabled me to change the direction of the ball when it hits the top and bottom of the viewport as well as the bars. Also it helped to register points when the ball hit the sides of the viewport. 
+  
+![](https://i.imgur.com/BQtEA3a.png)
 
 - Player control of bar
 
@@ -66,11 +76,11 @@ These days were the most intense in regards to researching JavaScript methods an
 
 ## Errors or bugs
 
-Occasionaly, the ball will appear to slide on the bar before the collision occurs and it changes direciton.
+Occasionally, the ball will appear to slide on the bar before the collision occurs and it changes direction.
 
 ## Challenges
 
-This was my first JavaScript project, so there were many areas where I lacked complete understanding in the implementation of researched methods that hadn't been covered in previous lectures. I could have been more efficient in my approach to understanding concepts before using them, as I had many errors that I was not able to decipher as a result, which led to many points of frustration during the project week.
+This was my first JavaScript project, so there were many areas where I lacked complete understanding in the implementation of researched methods that hadn't been covered in previous lectures. I could have been more patient in my approach to understanding concepts before using them, as I had many errors that I was not able to decipher as a result, which led to many points of frustration during the project week. When I took time to study certain concepts in more detail before applying them, it was a smoother process.
 
 ## Wins
 
